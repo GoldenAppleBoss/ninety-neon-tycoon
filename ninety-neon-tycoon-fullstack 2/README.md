@@ -65,6 +65,21 @@ pip install pytest
 pytest -q
 ```
 
+## Roulette randomness and simulation
+
+The arcade draws each prize using Web Crypto (`crypto.getRandomValues`), rather than `Math.random`. Rejection sampling prevents bias when converting a 32-bit random value to one of 100 tickets. The tickets match the visible odds: $0 (40%), $10 (25%), $25 (18%), $50 (10%), $100 (5%), and $250 (2%). Every spin uses a fresh draw; previous wins, losses, and wallet balances do not change the odds. A separate secure draw positions the wheel inside the selected segment. A random-source failure never charges the player.
+
+From this project folder, run:
+
+```bash
+node tests/roulette.cjs
+node tests/roulette_simulation.cjs --report
+```
+
+The first command checks exact probability boundaries, rejection of biased values, spending, payouts, reloads, and random-source failures. The second runs the production prize selector one million times with actual Web Crypto randomness and writes `tests/roulette_simulation_results.json`. It compares prize frequencies and 500,000 non-overlapping outcome pairs against their expected frequencies, allowing six standard deviations for random variation. Each run will differ; exact percentages are not expected.
+
+This is cryptographically secure pseudorandomness, not a proof of physical true randomness. Simulation can catch distribution mistakes and obvious sequence problems; it cannot prove randomness. Outcomes remain browser-local, like the rest of the game, and are not protected against a player editing their own game state.
+
 ## Notes before inviting players
 
 - This is a **starter authentication system**, not a managed identity service. Before a large public launch, add verified-email sign-up, forgot-password/password reset, automated backups, logging/monitoring, and stronger IP-based rate limits or bot protection.

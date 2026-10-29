@@ -80,17 +80,32 @@ const ROULETTE_PRIZES=[
 ];
 let rouletteTimer;
 function rouletteBusy(){return s.modal?.type==='roulette'&&s.modal.spinning}
-function pickRoulettePrize(roll=Math.random()){
+function rouletteRandomInt(limit){
+  if(!Number.isInteger(limit)||limit<1||limit>2**32)throw new RangeError('Invalid random range');
+  // Reject the short remainder of the uint32 range: modulo alone biases the odds.
+  const ceiling=Math.floor(2**32/limit)*limit;
+  const sample=new Uint32Array(1);
+  do{window.crypto.getRandomValues(sample)}while(sample[0]>=ceiling);
+  return sample[0]%limit;
+}
+function pickRoulettePrize(ticket=rouletteRandomInt(ROULETTE_PRIZES.reduce((sum,prize)=>sum+prize.weight,0))){
   let cumulative=0;
-  return ROULETTE_PRIZES.findIndex(prize=>{cumulative+=prize.weight;return roll*100<cumulative});
+  return ROULETTE_PRIZES.findIndex(prize=>{cumulative+=prize.weight;return ticket<cumulative});
 }
 function spinRoulette(){
   const m=s.modal,p=active();
   if(s.view!=='city'||m?.type!=='roulette'||m.spinning||p.done||p.energy<=0||p.cash<ROULETTE_COST)return;
-  const prize=pickRoulettePrize();
+  let prize,landingOffset;
+  try{
+    prize=pickRoulettePrize();
+    landingOffset=rouletteRandomInt(1000000)/1000000;
+  }catch{
+    // Never charge for a spin if secure randomness is unavailable.
+    toast('SPIN UNAVAILABLE. PLEASE TRY AGAIN.');return;
+  }
   const start=ROULETTE_PRIZES.slice(0,prize).reduce((sum,item)=>sum+item.weight,0)*3.6;
   // Keep the landing comfortably inside the winning segment, away from dividers.
-  const landing=start+ROULETTE_PRIZES[prize].weight*3.6*(.25+Math.random()*.5);
+  const landing=start+ROULETTE_PRIZES[prize].weight*3.6*(.25+landingOffset*.5);
   const from=m.rotation||0;
   const rotation=from+360*5+((360-landing-from%360)+360)%360;
   const duration=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?150:4600;

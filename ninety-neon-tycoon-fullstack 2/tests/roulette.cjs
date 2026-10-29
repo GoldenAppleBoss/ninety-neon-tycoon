@@ -7,6 +7,9 @@ const saved = new Map();
 let now = 1000;
 let reducedMotion = false;
 let nextTimer = 0;
+let randomWord = 0;
+let cryptoUnavailable = false;
+const randomQueue = [];
 const timers = new Map();
 const events = {};
 const elements = {
@@ -21,7 +24,14 @@ const context = vm.createContext({
   clearTimeout(id) {timers.delete(id);},
   localStorage: {getItem: key => saved.get(key) || null, setItem: (key, value) => saved.set(key, value)},
   document: {documentElement: {dataset: {}}, getElementById: id => elements[id], addEventListener(type, fn) {events[type] = fn;}},
-  window: {matchMedia: () => ({matches: reducedMotion})},
+  window: {
+    matchMedia: () => ({matches: reducedMotion}),
+    crypto: {getRandomValues(array) {
+      if (cryptoUnavailable) throw Error('Random source unavailable');
+      array[0] = randomQueue.length ? randomQueue.shift() : randomWord;
+      return array;
+    }},
+  },
 });
 vm.runInContext(code, context);
 const run = source => vm.runInContext(source, context);
@@ -41,13 +51,24 @@ assert.match(elements.screen.innerHTML, /PRIZES &amp; CHANCES/);
 assert.equal(run('active().energy'), 4, 'Entering the arcade is free');
 
 // Test all probability boundaries and exact distribution over an even grid.
-const expected = [[0,0],[.399999,0],[.4,1],[.649999,1],[.65,2],[.829999,2],[.83,3],[.929999,3],[.93,4],[.979999,4],[.98,5],[.999999,5]];
+const expected = [[0,0],[39,0],[40,1],[64,1],[65,2],[82,2],[83,3],[92,3],[93,4],[97,4],[98,5],[99,5]];
 for (const [roll, prize] of expected) assert.equal(run(`pickRoulettePrize(${roll})`), prize);
-assert.deepEqual(JSON.parse(run('JSON.stringify(Array.from({length:10000},(_,i)=>pickRoulettePrize((i+.5)/10000)).reduce((counts,i)=>(counts[i]++,counts),[0,0,0,0,0,0]))')), [4000,2500,1800,1000,500,200]);
+assert.deepEqual(JSON.parse(run('JSON.stringify(Array.from({length:100},(_,i)=>pickRoulettePrize(i)).reduce((counts,i)=>(counts[i]++,counts),[0,0,0,0,0,0]))')), [40,25,18,10,5,2]);
+// 2^32 is not divisible by 100. Reject every value in the short remainder.
+for (const rejected of [4294967200, 4294967295]) {
+  randomQueue.push(rejected, 98);
+  assert.equal(run('pickRoulettePrize()'), 5);
+  assert.equal(randomQueue.length, 0, 'Biased remainder must trigger another draw');
+}
+randomQueue.push(4294967199);
+assert.equal(run('rouletteRandomInt(100)'), 99, 'Last acceptable value stays in range');
+assert.throws(() => run('rouletteRandomInt(0)'), /Invalid random range/);
+run('Math.random=()=>{throw Error("Roulette must not use Math.random")};');
 
 // Force each outcome, check the pointer, and ensure exactly one charge and payout.
-for (const [roll, index] of [[.2,0],[.5,1],[.7,2],[.87,3],[.95,4],[.99,5]]) {
-  run(`active().cash=300; active().energy=4; Math.random=()=>${roll}`);
+for (const [ticket, index] of [[20,0],[50,1],[70,2],[87,3],[95,4],[99,5]]) {
+  randomWord = ticket;
+  run('active().cash=300; active().energy=4');
   click('spin');
   assert.equal(run('active().cash'), 280);
   assert.equal(run('active().energy'), 3);
@@ -72,7 +93,8 @@ for (const [roll, index] of [[.2,0],[.5,1],[.7,2],[.87,3],[.95,4],[.99,5]]) {
 }
 
 // A paid, pending spin survives logout/reload and stays with the correct account.
-run('Math.random=()=>.99; active().cash=100; spinRoulette()');
+randomWord = 99;
+run('active().cash=100; spinRoulette()');
 const pending = JSON.parse(saved.get('neon-borough-v1:roulette-a'));
 assert.equal(pending.players[0].cash, 80);
 assert.equal(pending.modal.prize, 5);
@@ -93,7 +115,13 @@ for (const setup of ['active().cash=19; active().energy=4', 'active().cash=100; 
   assert.equal(run('s.modal.spinning'), false);
 }
 reducedMotion = true;
-run('active().done=false; active().energy=1; active().cash=20; Math.random=()=>0; spinRoulette()');
+cryptoUnavailable = true;
+run('active().done=false; active().energy=1; active().cash=20; spinRoulette()');
+assert.equal(run('active().cash'), 20, 'Random-source failure cannot charge the wallet');
+assert.equal(run('active().energy'), 1, 'Random-source failure cannot consume an action');
+cryptoUnavailable = false;
+randomWord = 0;
+run('spinRoulette()');
 assert.equal(run('s.modal.duration'), 150);
 advance(150);
 assert.equal(run('active().energy'), 0);

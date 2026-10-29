@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-10-29T15:20:04.123Z",
+  "method": "Production pickRoulettePrize(), Web Crypto getRandomValues(), rejection sampling; Math.random disabled",
+  "spins": 1000000,
+  "outcomes": [
+    {
+      "prize": 0,
+      "expectedPercent": 40,
+      "actualPercent": 40.0191,
+      "count": 400191,
+      "standardDeviations": 0.3898771173929892
+    },
+    {
+      "prize": 10,
+      "expectedPercent": 25,
+      "actualPercent": 24.981,
+      "count": 249810,
+      "standardDeviations": -0.4387862045841156
+    },
+    {
+      "prize": 25,
+      "expectedPercent": 18,
+      "actualPercent": 17.9908,
+      "count": 179908,
+      "standardDeviations": -0.23946643489586264
+    },
+    {
+      "prize": 50,
+      "expectedPercent": 10,
+      "actualPercent": 9.9784,
+      "count": 99784,
+      "standardDeviations": -0.72
+    },
+    {
+      "prize": 100,
+      "expectedPercent": 5,
+      "actualPercent": 4.9910000000000005,
+      "count": 49910,
+      "standardDeviations": -0.4129483209670112
+    },
+    {
+      "prize": 250,
+      "expectedPercent": 2,
+      "actualPercent": 2.0397,
+      "count": 20397,
+      "standardDeviations": 2.835714285714286
+    }
+  ],
+  "independentPairs": 500000,
+  "maxPairStandardDeviations": 1.888985258312634,
+  "thresholdStandardDeviations": 6,
+  "averagePayout": 22.07525,
+  "expectedAveragePayout": 22,
+  "passed": true,
+  "limitation": "Statistical checks can detect distribution and sequence problems; they cannot prove true randomness or browser tamper resistance."
+}

@@ -1,0 +1,57 @@
+/* The arcade cabinet follows the city's sage, rose and slate palette. */
+.roulette-panel{--cabinet-bg:#f0f4ee;--cabinet-edge:#c8d8cc;--cabinet-ink:#315159;--cabinet-muted:#607975;width:min(860px,100%);padding:28px}
+.roulette-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.roulette-heading .field-title{margin:0;font-size:10px;letter-spacing:1.8px}
+.roulette-online{display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:1px;color:var(--cabinet-muted);white-space:nowrap}
+.roulette-online i{width:6px;height:6px;background:var(--good);border-radius:1px}
+.roulette-panel h2{font-size:34px;letter-spacing:1px;margin:20px 0}
+.roulette-panel h2>span{display:block;margin-top:5px;color:var(--cabinet-muted);font-size:15px;font-weight:500;letter-spacing:0}
+.roulette-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:26px;align-items:center}
+.roulette-stage{padding:18px 8px 12px;border:1px solid var(--cabinet-edge);border-radius:12px;background:radial-gradient(ellipse at center,#dce7df 0%,var(--cabinet-bg) 70%);position:relative;overflow:hidden}
+.roulette-machine{position:relative;width:min(100%,360px);aspect-ratio:1;margin:auto;filter:drop-shadow(0 8px 9px #203c3c26)}
+.roulette-disc{width:100%;height:100%;transform:rotate(var(--wheel-to))}
+.roulette-disc svg{display:block;width:100%;height:100%;overflow:visible}
+.roulette-rim{fill:#1e3844;stroke:#8caba1;stroke-width:4}
+.roulette-lights{fill:none;stroke:#efcf94;stroke-width:4;stroke-dasharray:3 14.28}
+.roulette-sector path{stroke:#e7e8d1;stroke-width:1;stroke-opacity:.6}
+.roulette-sector text{fill:#fff9e8;text-anchor:middle;dominant-baseline:middle;font:700 17px 'Space Mono',monospace;letter-spacing:-.7px;paint-order:stroke;stroke:#18303b55;stroke-width:1.5}
+.roulette-sector .rare-prize{font-size:12px;letter-spacing:-.5px;stroke:#18303b;stroke-width:2px}
+.roulette-sector.is-winner path{stroke:#fff4c6;stroke-width:3;filter:brightness(1.2)}
+.roulette-pointer{position:absolute;z-index:3;top:-3px;left:50%;transform:translateX(-50%);width:27px;height:36px;background:#e1b470;clip-path:polygon(0 0,100% 0,100% 42%,50% 100%,0 42%);filter:drop-shadow(0 2px 2px #0005)}
+.roulette-hub{position:absolute;inset:37%;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:#243f49;border:4px solid #d9c28e;box-shadow:0 4px 12px #122e3e66,inset 0 0 0 3px #3b5660;color:#fff5da;pointer-events:none}
+.roulette-hub span{font:700 8px 'Space Mono',monospace;letter-spacing:2px}
+.roulette-hub b{font:700 clamp(20px,4vw,37px)/1.1 'Rajdhani',sans-serif;letter-spacing:1px}
+.roulette-plaque{font-size:11px;letter-spacing:2px;color:var(--cabinet-ink);text-align:center;margin-top:10px}
+.is-spinning .roulette-disc{animation:roulette-turn var(--spin-duration) cubic-bezier(.12,.65,.12,1) both;animation-delay:var(--spin-elapsed)}
+@keyframes roulette-turn{from{transform:rotate(var(--wheel-from))}to{transform:rotate(var(--wheel-to))}}
+.roulette-console{min-width:0}
+.roulette-wallet{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-bottom:1px solid var(--cabinet-edge);padding-bottom:16px}
+.roulette-wallet span{display:block;font-size:10px;letter-spacing:1px;color:var(--cabinet-muted)}
+.roulette-wallet b{display:block;font-size:27px;color:var(--cabinet-ink);margin-top:4px}
+.roulette-result{min-height:159px;padding:20px 0 14px;color:var(--cabinet-ink)}
+.roulette-kicker{display:block;font-size:10px;letter-spacing:2px;color:var(--cabinet-muted);margin-bottom:8px}
+.roulette-result strong{display:block;font-size:25px;line-height:1.15}
+.roulette-result p{font-size:14px;line-height:1.5;color:var(--cabinet-muted);margin:10px 0 0}
+.roulette-result.has-prize strong{color:var(--cyan)}
+.roulette-spin{display:block;width:100%;font-size:18px;min-height:52px;touch-action:manipulation}
+.roulette-spin:disabled{filter:none;opacity:.55}
+.roulette-price{color:var(--cabinet-muted);text-align:center;font-size:12px;margin:10px 0 0}
+.roulette-limit{color:var(--bad);font-size:13px;line-height:1.4;text-align:center;margin:8px 0 0}
+.roulette-odds{border-top:1px solid var(--cabinet-edge);margin-top:24px;padding-top:17px}
+.roulette-odds summary{cursor:pointer;font-size:11px;letter-spacing:1px;color:var(--cabinet-ink)}
+.roulette-odds summary>span{float:right;font-size:11px;letter-spacing:0;color:var(--cabinet-muted)}
+.roulette-odds summary:focus-visible{outline:3px solid var(--yellow);outline-offset:4px}
+.roulette-odds ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin:14px 0 10px}
+.roulette-odds li{display:grid;grid-template-columns:8px 1fr;align-items:center;gap:4px 8px;background:var(--cabinet-bg);border:1px solid var(--cabinet-edge);border-radius:6px;padding:9px 8px;color:var(--cabinet-ink)}
+.roulette-odds li>i{width:8px;height:8px;border-radius:2px}
+.roulette-odds li>b{font-size:16px}
+.roulette-odds li>span{grid-column:2;font-size:12px;color:var(--cabinet-muted)}
+.roulette-odds li.is-winner{border-color:var(--cyan);box-shadow:inset 0 -2px var(--cyan)}
+.roulette-odds>p{font-size:12px;color:var(--cabinet-muted);line-height:1.5;margin:0}
+.roulette-panel>.text-link{margin-top:7px;padding-bottom:0}
+.roulette-panel>.text-link:disabled{opacity:.5;cursor:wait}
+html[data-theme="dark"] .roulette-panel{--cabinet-bg:#1c303a;--cabinet-edge:#3a5660;--cabinet-ink:#e6f3ef;--cabinet-muted:#acc5c1}
+html[data-theme="dark"] .roulette-stage{background:radial-gradient(ellipse at center,#31555a 0%,#1a303c 70%)}
+@media(max-width:680px){.roulette-panel{padding:20px;max-height:94dvh}.roulette-layout{grid-template-columns:1fr;gap:16px}.roulette-stage{padding:13px 8px 10px}.roulette-machine{max-width:285px}.roulette-panel h2{font-size:28px;margin:16px 0}.roulette-heading{align-items:flex-start}.roulette-heading .field-title{font-size:9px;letter-spacing:1px}.roulette-online{font-size:8px;letter-spacing:0}.roulette-wallet{padding-bottom:10px}.roulette-wallet b{font-size:24px}.roulette-result{min-height:0;padding:14px 0}.roulette-result strong{font-size:23px}.roulette-odds{margin-top:18px}.roulette-odds ul{grid-template-columns:repeat(3,minmax(0,1fr))}.roulette-hub b{font-size:30px}}
+@media(max-width:370px){.roulette-odds summary>span{display:none}.roulette-machine{max-width:235px}.roulette-hub span{font-size:6px}}
+@media(prefers-reduced-motion:reduce){.is-spinning .roulette-disc{animation:none;transform:rotate(var(--wheel-to))}.roulette-spin{transition:none}}

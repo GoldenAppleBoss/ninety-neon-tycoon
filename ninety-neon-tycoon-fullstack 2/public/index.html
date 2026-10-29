@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#10171f" />
+  <meta name="description" content="Ninety Neon Tycoon: a 1990s city economics simulation." />
+  <title>Ninety Neon Tycoon | City Life, Your Choices</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="city.css" />
+  <link rel="stylesheet" href="refresh.css" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="account.css" />
+</head>
+<body>
+  <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
+    <div class="auth-layout">
+      <div class="auth-promo">
+        <span class="auth-kicker">YOUR CITY · YOUR STORY · 1996</span>
+        <div class="auth-skyline" aria-hidden="true"><span class="auth-sun"></span><span class="auth-buildings">▂▆▃▇▂▅▆▃</span></div>
+        <h1 id="authTitle">NINETY<br><span>NEON</span><br>TYCOON</h1>
+        <p>Get a job. Build a business. Navigate an unpredictable economy. Every decision changes your city life.</p>
+        <div class="auth-points"><span>✦ 90s city simulation</span><span>✦ Real economic decisions</span><span>✦ Your own player profile</span></div>
+      </div>
+      <div class="auth-form-card">
+        <div class="auth-card-heading"><span>PLAYER ACCESS</span><span class="online-signal">● ACCOUNT REQUIRED</span></div>
+        <div class="auth-tabs" role="tablist" aria-label="Account access">
+          <button type="button" id="signupTab" class="selected" role="tab" aria-selected="true">Create account</button>
+          <button type="button" id="loginTab" role="tab" aria-selected="false">Sign in</button>
+        </div>
+        <form id="authForm" autocomplete="on">
+          <h2 id="formTitle">Join the city</h2>
+          <p id="formSubtitle">Create your player account before starting your story.</p>
+          <label id="displayNameField">Player name<input id="signupName" type="text" autocomplete="nickname" minlength="2" maxlength="32" placeholder="Choose a display name" /></label>
+          <label>Email<input id="authEmail" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" /></label>
+          <label>Password<input id="authPassword" type="password" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="Enter your password" /></label>
+          <div id="passwordRules" class="password-rules">At least 8 characters, 1 uppercase letter, and 1 special character.</div>
+          <p id="authError" class="account-error" role="alert" hidden></p>
+          <button class="account-primary" id="authSubmit" type="submit">CREATE MY ACCOUNT ↗</button>
+        </form>
+        <p class="auth-footnote">Private sign-in. Passwords are never stored as plain text.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="appRoot" class="app-shell" hidden>
+    <header class="topbar">
+      <div class="brand"><span class="brand-icon">N<span>N</span></span><span>NINETY NEON <em>© 1996</em></span></div>
+      <div class="top-actions">
+        <span class="online-dot"></span><span>LOCAL ARCADE</span>
+        <button id="themeToggle" class="mini-button theme-toggle" type="button" aria-label="Switch theme" aria-pressed="false">☾ DARK MODE</button>
+        <button id="soundToggle" class="mini-button" type="button">SOUND: OFF</button>
+        <button id="accountButton" class="account-chip" type="button" aria-label="Open account settings"><span id="headerAvatar" class="small-avatar">★</span><span id="headerName">Account</span><span aria-hidden="true">⚙</span></button>
+      </div>
+    </header>
+    <main id="screen" aria-live="polite"></main>
+    <footer><span>NINETY NEON TYCOON // 1996</span><span>AP MACRO · UNITS 1–3</span><span id="clock"></span></footer>
+  </div>
+
+  <div id="accountOverlay" class="account-overlay" hidden>
+    <section class="settings-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="settings-head"><div><span class="auth-kicker">PLAYER FILE</span><h2 id="settingsTitle">Account settings</h2></div><button id="closeSettings" class="close-account" type="button" aria-label="Close settings">×</button></div>
+      <div class="settings-identity"><div id="settingsAvatar" class="settings-avatar">★</div><div><strong id="settingsName">Player</strong><p id="settingsEmail"></p></div></div>
+      <form id="profileForm">
+        <label>Player name<input id="profileName" type="text" minlength="2" maxlength="32" required /></label>
+        <button class="account-primary secondary" type="submit">SAVE NAME</button>
+      </form>
+      <form id="avatarForm">
+        <label>Profile picture <small>PNG, JPG, or WebP. Maximum 3 MB.</small><input id="avatarFile" type="file" accept="image/png,image/jpeg,image/webp" required /></label>
+        <button class="account-primary secondary" type="submit">UPLOAD PHOTO</button>
+      </form>
+      <p id="settingsMessage" class="settings-message" role="status"></p>
+      <button id="logoutButton" class="logout-button" type="button">SIGN OUT</button>
+    </section>
+  </div>
+  <script src="game.js"></script>
+  <script src="account.js"></script>
+</body>
+</html>

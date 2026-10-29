@@ -1,0 +1,81 @@
+/* Player-controlled theme. Light mode stays soft; dark mode brings back restrained neon. */
+.theme-toggle{min-width:132px;white-space:nowrap}
+.top-actions{gap:10px}
+html[data-theme="dark"]{color-scheme:dark;--bg:#0b1016;--panel:#141d27;--raised:#1c2935;--edge:#354955;--cyan:#79ded3;--pink:#f39abc;--yellow:#f0ca84;--lavender:#b6a7dd;--white:#e6f2f1;--muted:#a1b9bd;--good:#79d5a6;--bad:#e88b8f}
+html[data-theme="dark"] body{background:radial-gradient(ellipse at 40% 0%,#1c3040 0%,#0a1118 65%);color:#e6f2f1}
+html[data-theme="dark"] .topbar,html[data-theme="dark"] footer{border-color:#304752;color:#a0b7b8}
+html[data-theme="dark"] .brand-icon{background:#152832;border-color:#64d6ce;color:#9be6df;box-shadow:3px 3px 0 #32455b}
+html[data-theme="dark"] .brand-icon span,html[data-theme="dark"] .brand em{color:#f3a4bd}
+html[data-theme="dark"] .mini-button{background:#192a36;border-color:#456775;color:#c5ece5}
+html[data-theme="dark"] .eyebrow,html[data-theme="dark"] .field-title,html[data-theme="dark"] .game-top,html[data-theme="dark"] .stage,html[data-theme="dark"] .side-title{color:#86d8c9}
+html[data-theme="dark"] .logo{color:#effafa;text-shadow:5px 5px #28444d}
+html[data-theme="dark"] .logo .pink{color:#f09fb7}
+html[data-theme="dark"] .year{color:#efc38f}
+html[data-theme="dark"] .hero p,html[data-theme="dark"] .feature p,html[data-theme="dark"] .section-head p,html[data-theme="dark"] .small-desc,html[data-theme="dark"] .mini-list{color:#acc1c2}
+html[data-theme="dark"] .pixel-btn{background:#77d6cb;color:#112c31;border-color:#77d6cb;box-shadow:0 4px 18px #44b5a929}
+html[data-theme="dark"] .pixel-btn.alt{background:#172a34;color:#9ce5db;border-color:#58887f;box-shadow:none}
+html[data-theme="dark"] .arcade-window,html[data-theme="dark"] .panel,html[data-theme="dark"] .feature,html[data-theme="dark"] .stat,html[data-theme="dark"] .leader,html[data-theme="dark"] .reveal-item{background:#14212b;border-color:#35505b;box-shadow:0 12px 32px #0005}
+html[data-theme="dark"] .window-bar{color:#adc8c6;border-color:#3e5460}
+html[data-theme="dark"] .world{background:radial-gradient(circle at 50% 52%,#70536c,#27394f 54%,#152333)}
+html[data-theme="dark"] .sun{background:linear-gradient(#ffcf9c,#ed92ac);box-shadow:0 0 60px #b9749666}
+html[data-theme="dark"] .sun:after{background:repeating-linear-gradient(180deg,transparent 0 13px,#4d4564 14px 20px)}
+html[data-theme="dark"] .city{color:#1b2b39;text-shadow:0 -8px #30465c}
+html[data-theme="dark"] .horizon{background:#76cfc6;box-shadow:0 0 14px #5fbbb79a}
+html[data-theme="dark"] .grid-floor{background-image:linear-gradient(#61ccc66b 2px,transparent 2px),linear-gradient(90deg,#61ccc66b 2px,transparent 2px)}
+html[data-theme="dark"] .stat{background:#192934;border-color:#35515a}
+html[data-theme="dark"] .stat b,html[data-theme="dark"] .feature .num{color:#efc78c}
+html[data-theme="dark"] .stat span{color:#a5bfbd}
+html[data-theme="dark"] .section-head h2,html[data-theme="dark"] .panel h2,html[data-theme="dark"] .feature h3{color:#e9f6f2}
+html[data-theme="dark"] .name-input{color:#b8cecc}
+html[data-theme="dark"] .name-input input,html[data-theme="dark"] .number-choice button{background:#0f1c25;border-color:#48616a;color:#e6f5f2}
+html[data-theme="dark"] .number-choice button.active{background:#6ccfc4;border-color:#6ccfc4;color:#10272a}
+html[data-theme="dark"] .rule-box{background:#20313a;color:#c6d9d6;border-left-color:#e7a4ba}
+html[data-theme="dark"] .progress i{background:#3a515a}
+html[data-theme="dark"] .progress i.complete{background:#70c9bc}
+html[data-theme="dark"] .progress i.current{background:#e89fb4}
+html[data-theme="dark"] .question{color:#ecf5f2}
+html[data-theme="dark"] .prompt-note,html[data-theme="dark"] .hint{color:#a8c0c1}
+html[data-theme="dark"] .story-choice{background:#1b2c36;border-color:#425e67;color:#ecf5f2}
+html[data-theme="dark"] .story-choice:hover{background:#27434b;border-color:#7ccbbd}
+html[data-theme="dark"] .story-choice .choice-description{color:#b8cbcb}
+html[data-theme="dark"] .story-choice .choice-arrow{color:#92ddd2}
+html[data-theme="dark"] .reveal-item p{color:#b5c9c9}
+html[data-theme="dark"] .reward-banner{color:#f0c58d}
+html[data-theme="dark"] .leader:first-child{background:#283339;border-color:#967f64}
+html[data-theme="dark"] .leader b{color:#8cdace}
+html[data-theme="dark"] .gold{color:#f0cc8b}
+html[data-theme="dark"] .hud-name,html[data-theme="dark"] .hud-stat,html[data-theme="dark"] .map-panel,html[data-theme="dark"] .sidebar{background:#14212b;border-color:#36505b;box-shadow:0 8px 24px #0005}
+html[data-theme="dark"] .hud-name small,html[data-theme="dark"] .hud-stat small,html[data-theme="dark"] .nearby small{color:#a4bbba}
+html[data-theme="dark"] .hud-name strong,html[data-theme="dark"] .hud-stat strong{color:#e6f3ef}
+html[data-theme="dark"] .map-title,html[data-theme="dark"] .map-title span:first-child{color:#9bd8d0}
+html[data-theme="dark"] .city-map{background:#20333d;border-color:#283b46}
+html[data-theme="dark"] .tile.block{background:linear-gradient(145deg,#2b5052,#244047)}
+html[data-theme="dark"] .tile.block:before{border-color:#416f69}
+html[data-theme="dark"] .tile.road{background:#263942}
+html[data-theme="dark"] .tile.road:before{border-color:#65777c}
+html[data-theme="dark"] .tile.building{background:linear-gradient(135deg,#3c777d,#2b5368);border-color:#79b9b6;box-shadow:inset -4px -5px #1a3946}
+html[data-theme="dark"] .tile.occupied{background:#425c65}
+html[data-theme="dark"] .road-mark,html[data-theme="dark"] .tile-deco{color:#6ca4a1}
+html[data-theme="dark"] .controls button{background:#20333f;border-color:#4b6c73;color:#a5ece0}
+html[data-theme="dark"] .controls button:active{background:#7ddacf;color:#14242b}
+html[data-theme="dark"] .nearby b{color:#f0c98f}
+html[data-theme="dark"] .sidebar h3{color:#f1a5b9}
+html[data-theme="dark"] .sidebar p{color:#b7cbca}
+html[data-theme="dark"] .side-title,html[data-theme="dark"] .ticker>div,html[data-theme="dark"] .file-row{border-color:#324a54}
+html[data-theme="dark"] .ticker{background:#10202a;border-color:#37515a}
+html[data-theme="dark"] .ticker span,html[data-theme="dark"] .file-row span{color:#acc7c4}
+html[data-theme="dark"] .ticker strong,html[data-theme="dark"] .file-row b{color:#edc589}
+html[data-theme="dark"] .side-tip{background:#223540;color:#c0d4d0;border-left-color:#e7a1b8}
+html[data-theme="dark"] .text-link{color:#8fded1}
+html[data-theme="dark"] .score-pill{background:#1b2a34;border-color:#405965;color:#c0d7d2}
+html[data-theme="dark"] .score-pill.current{color:#f2acc0;border-color:#b57c8c}
+html[data-theme="dark"] .score-pill b{color:#f0c68c}
+html[data-theme="dark"] .modal-shade{background:#02080cce}
+html[data-theme="dark"] .modal-panel{background:#162631;border-color:#5c8988;box-shadow:0 20px 65px #0009}
+html[data-theme="dark"] .modal-panel h2{color:#ebf5f2}
+html[data-theme="dark"] .location-options button{background:#1c303b;border-color:#42636a;color:#ebf5f2}
+html[data-theme="dark"] .location-options button:hover{background:#2c4a50;border-color:#80ccc1}
+html[data-theme="dark"] .location-options b{color:#9de2d8}
+html[data-theme="dark"] .location-options span{color:#b9d1cd}
+html[data-theme="dark"] .toast{background:#77d6c9;color:#142d30}
+@media(max-width:680px){.topbar{height:auto;min-height:72px;padding:12px 0}.top-actions{flex-wrap:wrap;justify-content:flex-end}.theme-toggle{min-width:110px}}
